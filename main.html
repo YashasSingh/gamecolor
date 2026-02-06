@@ -88,6 +88,43 @@
       color: #777;
       border-top: 1px solid #222;
     }
+
+    .slideshow-container {
+      position: relative;
+      max-width: 800px;
+      margin: 2rem auto;
+      background-color: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    }
+
+    .slideshow-container img {
+      width: 100%;
+      height: auto;
+      display: none;
+      animation: fadeIn 1s;
+    }
+
+    .slideshow-container img.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .slide-counter {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      background-color: rgba(0,0,0,0.7);
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      color: #eaeaea;
+    }
   </style>
 </head>
 <body>
@@ -199,9 +236,70 @@
   </div>
 </section>
 
+<section>
+  <h3>Domain 5: Art and Expression</h3>
+  <h4>Capturing Moments | Photography</h4>
+  <div class="block">
+    <p>
+      Photography is my way of freezing time and perspective. Each image captures not just what I see, but how I choose to see it. Through the lens, I explore composition, light, and narrative—transforming fleeting moments into lasting impressions.
+    </p>
+
+    <div class="label">Philosophy</div>
+    <p>
+      Photography teaches patience and observation. It's about finding beauty in the mundane, recognizing patterns in chaos, and preserving fragments of experience that would otherwise dissolve into memory.
+    </p>
+
+    <div class="slideshow-container">
+      <img src="photos/546706153_17925093129107994_6008985033025417921_n.webp" class="active" alt="Photography">
+      <img src="photos/547854083_17925093126107994_430374831788832974_n.webp" alt="Photography">
+      <img src="photos/547868198_17925093138107994_5910867712975631408_n.webp" alt="Photography">
+      <img src="photos/547956443_17925093219107994_4280923025855429843_n.webp" alt="Photography">
+      <img src="photos/548187537_17925093210107994_4961766886500762924_n.webp" alt="Photography">
+      <img src="photos/548238149_17925093177107994_4260932008693667457_n.webp" alt="Photography">
+      <img src="photos/548526387_17925093195107994_5652698009704189490_n.webp" alt="Photography">
+      <img src="photos/548539881_17925093075107994_1942487752317681_n.webp" alt="Photography">
+      <img src="photos/548598953_17925093168107994_8915262309545029768_n.webp" alt="Photography">
+      <img src="photos/548902743_17925093102107994_5124737206840841949_n.webp" alt="Photography">
+      <img src="photos/549218247_17925093111107994_2530247131277075342_n.webp" alt="Photography">
+      <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">11</span>
+      </div>
+    </div>
+
+    <div class="quote">
+      "A photograph is a pause button on life." — Ty Holland
+    </div>
+
+    <p>
+      These images represent my journey in seeing the world not just as it is, but as it could be framed, highlighted, and remembered.
+    </p>
+  </div>
+</section>
+
 <footer>
   <p>Identity is built through choice, experience, and perseverance.</p>
 </footer>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slideshow-container img');
+  const totalSlides = slides.length;
+  const currentSlideElement = document.getElementById('current-slide');
+
+  function showSlide(n) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    currentSlide = (n + totalSlides) % totalSlides;
+    slides[currentSlide].classList.add('active');
+    currentSlideElement.textContent = currentSlide + 1;
+  }
+
+  function nextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  // Auto-advance every 3 seconds
+  setInterval(nextSlide, 3000);
+</script>
 
 </body>
 </html>
